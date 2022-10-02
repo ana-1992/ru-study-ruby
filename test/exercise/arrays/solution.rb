@@ -14,11 +14,7 @@ module Exercise
 
         return mid if guess == query
 
-        if guess > query
-          search(array, query, low, mid - 1)
-        else
-          search(array, query, mid + 1, high)
-        end
+        guess > query ? search(array, query, low, mid - 1) : search(array, query, mid + 1, high)
       end
     end
   end
