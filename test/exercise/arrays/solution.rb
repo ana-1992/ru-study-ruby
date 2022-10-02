@@ -6,21 +6,19 @@ module Exercise
         array.map { |el| el.positive? ? largest : el }
       end
 
-      def search(array, query)
-        recursive_search = lambda do |sorted_array, key, low, high|
-          mid = (low + high) / 2
-          guess = sorted_array[mid]
-          return - 1 if low > high
+      def search(array, query, low = 0, high = array.length - 1)
+        mid = (low + high) / 2
+        guess = array[mid]
 
-          return mid if guess == key
+        return - 1 if low > high || array[low] > query || array[high] < query
 
-          if guess > key
-            recursive_search.call(sorted_array, key, low, mid - 1)
-          else
-            recursive_search.call(sorted_array, key, mid + 1, high)
-          end
+        return mid if guess == query
+
+        if guess > query
+          search(array, query, low, mid - 1)
+        else
+          search(array, query, mid + 1, high)
         end
-        recursive_search.call(array, query, 0, array.length - 1)
       end
     end
   end

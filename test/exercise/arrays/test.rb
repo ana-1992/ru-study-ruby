@@ -19,6 +19,8 @@ class Exercise::ArraysTest < Minitest::Test
     assert Exercise::Arrays.search([1, 4, 5, 7, 8, 9], 9) == 5
     assert Exercise::Arrays.search([1, 4, 5, 7, 8, 9], 1).zero?
     assert Exercise::Arrays.search([1, 4, 5, 7, 8, 9], 6) == -1
+    assert Exercise::Arrays.search([-1, 0, 1], 10) == -1
+    assert Exercise::Arrays.search([-1, 0, 1], -10) == -1
 
     array = (1..10000).to_a
     assert Exercise::Arrays.search(array, array[1000]) == 1000
